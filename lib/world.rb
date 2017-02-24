@@ -43,4 +43,8 @@ class World
     a.compact.length
   end
 
+  def tick
+
+  end
+
 end
