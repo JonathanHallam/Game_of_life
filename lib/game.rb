@@ -11,4 +11,36 @@ class Game
     end
 
   end
+
+  def tick!
+
+    next_round_live_cells = []
+    next_round_dead_cells = []
+
+    world.world_space.each do |rows|
+      rows.each do |cell|
+        if cell.alive && world.live_neighbours_around_cell(cell) < 2
+          next_round_dead_cells << cell
+
+        elsif cell.alive && world.live_neighbours_around_cell(cell) <= 3
+          next_round_live_cells << cell
+
+        elsif cell.alive && world.live_neighbours_around_cell(cell) >= 4
+              next_round_dead_cells << cell
+
+        elsif cell.alive == false && world.live_neighbours_around_cell(cell) == 3
+          next_round_live_cells << cell
+        end
+      end
+    end
+
+    next_round_live_cells.each do |cell|
+      cell.alive = true
+    end
+
+    next_round_dead_cells.each do |cell|
+      cell.alive = false
+    end
+  end
+
 end

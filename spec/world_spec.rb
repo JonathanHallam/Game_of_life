@@ -29,6 +29,7 @@ describe World do
     end
   end
 
+
   it "should count the number of live neighbours that a cell has" do
     expect(@pandora.world_space[0][1].alive).to eql(false)
 
@@ -41,8 +42,6 @@ describe World do
     expect(@pandora.live_neighbours_around_cell(@pandora.world_space[0][0])).to eql(1)
     expect(@pandora.live_neighbours_around_cell(@pandora.world_space[2][2])).to eql(1)
     expect(@pandora.live_neighbours_around_cell(@pandora.world_space[1][0])).to eql(2)
-
-
   end
 
 end
