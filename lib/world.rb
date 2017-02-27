@@ -1,14 +1,16 @@
 require './lib/cell'
 
 class World
-  attr_accessor :rows, :columns, :world_space
+  attr_accessor :rows, :columns, :world_space#, :cells
   def initialize(rows=3, columns=3)
     @rows = rows
     @columns = columns
-
+#    @cells = []
     @world_space =  Array.new(@rows) do |row|
                       Array.new(@columns) do |col|
                         Cell.new(col, row)
+                        #@cells << cell
+                        #cell
                       end
                     end
   end
@@ -29,12 +31,12 @@ class World
 
     live_neighbours << @world_space[y-1][x-1] if y != 0 && x != 0
     live_neighbours << @world_space[y-1][x] if y != 0
-    live_neighbours << @world_space[y-1][x+1] if y != 0 && x+1 != @columns
+    live_neighbours << @world_space[y-1][x+1] if y != 0 && (x + 1) != @columns
     live_neighbours << @world_space[y][x-1] if x != 0
-    live_neighbours << @world_space[y][x+1] if x + 1 != @columns
-    live_neighbours << @world_space[y+1][x-1] if y+1 != @rows && x != 0
-    live_neighbours << @world_space[y+1][x] if y+1 != @rows
-    live_neighbours << @world_space[y+1][x+1] if y+1 != @rows && x+1 != @columns
+    live_neighbours << @world_space[y][x+1] if (x + 1) != @columns
+    live_neighbours << @world_space[y+1][x-1] if (y + 1) != @rows && x != 0
+    live_neighbours << @world_space[y+1][x] if (y + 1) != @rows
+    live_neighbours << @world_space[y+1][x+1] if (y + 1) != @rows && (x + 1) != @columns
 
     a = live_neighbours.flatten.map do |seed|
       seed if seed.alive == true
@@ -43,10 +45,5 @@ class World
     a.compact.length
   end
 
-#  def tick
-#
-#
-#
-#  end
 
 end
