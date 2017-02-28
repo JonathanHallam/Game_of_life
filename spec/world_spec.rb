@@ -15,7 +15,11 @@ describe World do
     expect(@pandora.respond_to?(:rows)).to eql(true)
     expect(@pandora.respond_to?(:world_space)).to eql(true)
     expect(@pandora.respond_to?(:live_neighbours_around_cell)).to eql(true)
+    expect(@pandora.respond_to?(:live_cells)).to eql(true)
+    expect(@pandora.respond_to?(:randomly_populate)).to eql(true)
+
   end
+
 
   it "should create a proper cell grid on initialization" do
     expect(@pandora.world_space.is_a?(Array)).to eql(true)
@@ -42,6 +46,12 @@ describe World do
     expect(@pandora.live_neighbours_around_cell(@pandora.world_space[0][0])).to eql(1)
     expect(@pandora.live_neighbours_around_cell(@pandora.world_space[2][2])).to eql(1)
     expect(@pandora.live_neighbours_around_cell(@pandora.world_space[1][0])).to eql(2)
+  end
+
+  it "should randomly populate the world" do
+    expect(@pandora.live_cells).to eql([])
+    @pandora.randomly_populate
+    expect(@pandora.live_cells.length == 0).to eql(false)
   end
 
 end
