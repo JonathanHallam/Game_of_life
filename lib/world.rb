@@ -9,8 +9,6 @@ class World
     @world_space =  Array.new(@rows) do |row|
                       Array.new(@columns) do |col|
                         Cell.new(col, row)
-                        #@cells << cell
-                        #cell
                       end
                     end
   end
@@ -43,6 +41,29 @@ class World
     end
 
     a.compact.length
+  end
+
+  def live_cells
+    live_cells = []
+    @world_space.each do |rows|
+      rows.each do |cells|
+        live_cells << cells
+      end
+    end
+    a = live_cells.flatten.map do |live|
+      live if live.alive == true
+    end
+
+    a.compact
+
+  end
+
+  def randomly_populate
+    @world_space.each do |rows|
+      rows.each do |cells|
+        cells.alive = [true, false].sample
+      end
+    end
   end
 
 
