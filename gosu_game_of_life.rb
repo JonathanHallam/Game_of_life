@@ -10,8 +10,9 @@ class GameWindow < Gosu::Window
     @height = height
     @width = width
 
-    @background_colour = Gosu::Color.new(0xffdedede)
+    @background_colour = Gosu::Color.new(0xff0061ff)
     @alive_colour = Gosu::Color.new(0xff121212)
+    @dead_colour = Gosu::Color.new(0xff6c7687)
 
     @columns = width / 10
     @rows = height / 10
@@ -41,9 +42,15 @@ class GameWindow < Gosu::Window
       row.each do |cell|
         if cell.alive == true
           draw_quad(  cell.x * @col_width, cell.y * @row_height, @alive_colour,
-                      (cell.x + 1) * @col_width, cell.y * @row_height, @alive_colour,
-                      (cell.x + 1) * @col_width, (cell.y + 1) * @row_height, @alive_colour,
-                      cell.x * @col_width, (cell.y + 1) * @row_height, @alive_colour,
+                      (cell.x + 1) * @col_width - 1, cell.y * @row_height, @alive_colour,
+                      (cell.x + 1) * @col_width -1, (cell.y + 1) * @row_height - 1, @alive_colour,
+                      cell.x * @col_width, (cell.y + 1) * @row_height - 1, @alive_colour,
+                      )
+        else
+          draw_quad(  cell.x * @col_width, cell.y * @row_height, @dead_colour,
+                      (cell.x + 1) * @col_width - 1, cell.y * @row_height, @dead_colour,
+                      (cell.x + 1) * @col_width - 1, (cell.y + 1) * @row_height - 1, @dead_colour,
+                      cell.x * @col_width, (cell.y + 1) * @row_height - 1 , @dead_colour,
                       )
         end
       end
