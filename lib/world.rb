@@ -1,11 +1,10 @@
 require './lib/cell'
 
 class World
-  attr_accessor :rows, :columns, :world_space#, :cells
+  attr_accessor :rows, :columns, :world_space
   def initialize(rows=3, columns=3)
     @rows = rows
     @columns = columns
-#    @cells = []
     @world_space =  Array.new(@rows) do |row|
                       Array.new(@columns) do |col|
                         Cell.new(col, row)

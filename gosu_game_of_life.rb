@@ -14,8 +14,8 @@ class GameWindow < Gosu::Window
     @alive_colour = Gosu::Color.new(0xff121212)
     @dead_colour = Gosu::Color.new(0xff6c7687)
 
-    @columns = width / 10
-    @rows = height / 10
+    @columns = width / 5
+    @rows = height / 5
 
     @col_width = @width / @columns
     @row_height = @height / @rows

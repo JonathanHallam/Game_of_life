@@ -20,8 +20,4 @@ describe Cell do
     expect(@prison.alive).to eql(false)
   end
 
-#  it "should
-
-
-
 end
